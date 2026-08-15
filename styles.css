@@ -941,6 +941,7 @@ body::after {
 .letters-stage {
     position: relative;
     width: min(100%, var(--max-content-width));
+    margin-top: 0.85rem;
 }
 
 .desk-shadow {

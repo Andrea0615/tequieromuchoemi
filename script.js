@@ -494,15 +494,16 @@ function createHearts() {
 
 function createPlanes() {
     const planesContainer = document.querySelector('.planes-container');
-    const planeCount = 1;
+    const planeCount = 5;
 
     for (let i = 0; i < planeCount; i++) {
         const plane = document.createElement('div');
         plane.className = 'plane';
         plane.textContent = '✈︎';
         plane.style.top = (Math.random() * 70 + 12) + '%';
-        plane.style.animationDelay = i * 4 + 's';
-        plane.style.animationDuration = (6 + Math.random() * 4) + 's';
+        plane.style.animationDelay = (i * 2.8 + Math.random() * 2) + 's';
+        plane.style.animationDuration = (9 + Math.random() * 7) + 's';
+        plane.style.fontSize = (0.85 + Math.random() * 0.55) + 'rem';
         planesContainer.appendChild(plane);
     }
 }
