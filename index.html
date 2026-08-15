@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Open When - Una colección de cartas digitales para mi mejor amigo">
+    <title>Open When...</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="paper-texture" aria-hidden="true"></div>
+    <div class="stars-container" aria-hidden="true"></div>
+    <div class="hearts-container" aria-hidden="true"></div>
+    <div class="planes-container" aria-hidden="true"></div>
+
+    <section id="screen-1" class="screen screen-landing">
+        <div class="hero-stage reveal-item">
+            <div class="hero-orb hero-orb-left" aria-hidden="true"></div>
+            <div class="hero-orb hero-orb-right" aria-hidden="true"></div>
+            <div class="hero-paper hero-paper-back" aria-hidden="true"></div>
+            <div class="hero-paper hero-paper-middle" aria-hidden="true"></div>
+            <div class="hero-paper hero-paper-front" aria-hidden="true"></div>
+            <div class="hero-decoration hero-decoration-left" aria-hidden="true"></div>
+            <div class="hero-decoration hero-decoration-right" aria-hidden="true"></div>
+            <div class="hero-route" aria-hidden="true"></div>
+
+            <figure class="hero-polaroid" aria-label="Foto grupal, un recuerdo de casa">
+                <span class="photo-tape" aria-hidden="true"></span>
+                <img src="assets/friends-photo.jpg" alt="Foto grupal de amigos con un letrero de See you soon">
+                <figcaption>see you soon ♡</figcaption>
+            </figure>
+
+            <div class="hero-copy">
+                <p class="eyebrow">for your exchange year</p>
+                <h1 class="landing-title">Open When...</h1>
+                <p class="landing-manuscript">cartas para esos días en los que me necesites cerca</p>
+                <p class="landing-subtitle">Para que nunca estés tan lejos de casa.</p>
+                <button id="btn-start" class="btn btn-editorial" aria-label="Iniciar, ver el regalo">
+                    open your little gift →
+                </button>
+                <p class="hero-note">a little piece of home</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="screen-2" class="screen screen-welcome">
+        <div class="desk-scene reveal-item">
+            <div class="tape tape-left" aria-hidden="true"></div>
+            <div class="tape tape-right" aria-hidden="true"></div>
+            <article class="welcome-letter paper-sheet">
+                <p class="paper-date">august, 2026</p>
+                <h2>Un pequeño regalo</h2>
+                <div class="letter-content">
+                    <p>Hice esto para ti para que, aunque estés lejos, siempre tengas un pedacito de casa contigo.</p>
+                    <p>Hay cartas para cuando estés feliz, triste, cansado, nostálgico o simplemente cuando necesites recordar que aquí siempre tienes a alguien.</p>
+                    <p>Ábrelas cuando las necesites. 💜</p>
+                </div>
+                <div class="paper-signature">
+                    <span class="paper-heart">♡</span>
+                    <span>con cariño</span>
+                </div>
+            </article>
+            <button id="btn-open-letters" class="btn btn-editorial" aria-label="Abrir la colección de cartas">
+                see your letters ↓
+            </button>
+        </div>
+    </section>
+
+    <section id="screen-3" class="screen screen-collection">
+        <div class="collection-header reveal-item">
+            <h2>Open When...</h2>
+            <p>cartas para esos días en los que me necesites cerca</p>
+        </div>
+        
+        <div class="letters-stage">
+            <div class="desk-shadow" aria-hidden="true"></div>
+            <div class="letters-grid" id="letters-grid"></div>
+        </div>
+
+        <div class="collection-footer">
+            <p class="made-with">MADE WITH 💜 FOR YOU</p>
+        </div>
+    </section>
+
+    <div id="letter-modal" class="modal" aria-label="Modal de carta abierta" aria-hidden="true">
+        <div class="modal-overlay" id="modal-overlay"></div>
+        <div class="modal-content">
+            <button id="modal-close" class="btn-close" aria-label="Cerrar carta">
+                close ×
+            </button>
+            
+            <div class="letter-modal-inner">
+                <p id="modal-date" class="modal-date"></p>
+                <h2 id="modal-title" class="modal-title"></h2>
+                <div id="modal-images" class="modal-images"></div>
+                <div id="modal-text" class="modal-text"></div>
+                <div id="modal-song" class="modal-song"></div>
+                <p class="modal-signature">con cariño, siempre cerca ♡</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

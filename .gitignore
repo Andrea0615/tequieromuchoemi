@@ -1,0 +1,28 @@
+# .gitignore for Open When project
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Node modules (if using any build tools in future)
+node_modules/
+package-lock.json
+
+# Environment variables
+.env
+.env.local
+
+# Build files (if adding webpack/vite later)
+dist/
+build/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
