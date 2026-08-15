@@ -115,11 +115,13 @@ const STORAGE_KEY = 'openWhenLetters';
 const screen1 = document.getElementById('screen-1');
 const screen2 = document.getElementById('screen-2');
 const screen3 = document.getElementById('screen-3');
-const currentScreens = [screen1, screen2, screen3];
+const screen4 = document.getElementById('screen-4');
+const currentScreens = [screen1, screen2, screen3, screen4];
 
 // Buttons
 const btnStart = document.getElementById('btn-start');
 const btnOpenLetters = document.getElementById('btn-open-letters');
+const btnSeeLetters = document.getElementById('btn-see-letters');
 
 // Letters grid
 const lettersGrid = document.getElementById('letters-grid');
@@ -136,6 +138,26 @@ const modalText = document.getElementById('modal-text');
 const modalImages = document.getElementById('modal-images');
 const modalSong = document.getElementById('modal-song');
 
+// Photo album lightbox
+const memoryButtons = Array.from(document.querySelectorAll('.memory-photo'));
+const photoLightbox = document.getElementById('photo-lightbox');
+const photoLightboxOverlay = document.getElementById('photo-lightbox-overlay');
+const photoLightboxClose = document.getElementById('photo-lightbox-close');
+const photoLightboxPrev = document.getElementById('photo-lightbox-prev');
+const photoLightboxNext = document.getElementById('photo-lightbox-next');
+const photoLightboxImg = document.getElementById('photo-lightbox-img');
+const photoLightboxCaption = document.getElementById('photo-lightbox-caption');
+const memoriesData = memoryButtons.map(button => {
+    const img = button.querySelector('img');
+    const caption = button.querySelector('.memory-caption');
+
+    return {
+        src: img.getAttribute('src'),
+        alt: img.getAttribute('alt'),
+        caption: caption ? caption.textContent : ''
+    };
+});
+
 // =====================================================
 // STATE MANAGEMENT
 // ===================================================== 
@@ -143,6 +165,7 @@ const modalSong = document.getElementById('modal-song');
 let currentScreen = 0;
 let openedLetters = new Set();
 let currentOpenedLetterId = null;
+let currentMemoryIndex = 0;
 
 // Load opened letters from localStorage
 function loadOpenedLetters() {
@@ -180,6 +203,10 @@ btnStart.addEventListener('click', () => {
 
 btnOpenLetters.addEventListener('click', () => {
     showScreen(2);
+});
+
+btnSeeLetters.addEventListener('click', () => {
+    showScreen(3);
 });
 
 // =====================================================
@@ -368,10 +395,59 @@ btnCloseModal.addEventListener('click', closeLetter);
 
 modalOverlay.addEventListener('click', closeLetter);
 
+// =====================================================
+// PHOTO LIGHTBOX
+// =====================================================
+
+function openPhoto(index) {
+    currentMemoryIndex = index;
+    const memory = memoriesData[currentMemoryIndex];
+
+    photoLightboxImg.src = memory.src;
+    photoLightboxImg.alt = memory.alt;
+    photoLightboxCaption.textContent = memory.caption;
+    photoLightbox.classList.add('active');
+    photoLightbox.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+}
+
+function closePhoto() {
+    photoLightbox.classList.remove('active');
+    photoLightbox.setAttribute('aria-hidden', 'true');
+    photoLightboxImg.removeAttribute('src');
+    document.body.style.overflow = letterModal.classList.contains('active') ? 'hidden' : '';
+}
+
+function showAdjacentPhoto(direction) {
+    const nextIndex = (currentMemoryIndex + direction + memoriesData.length) % memoriesData.length;
+    openPhoto(nextIndex);
+}
+
+memoryButtons.forEach((button, index) => {
+    button.addEventListener('click', () => openPhoto(index));
+});
+
+photoLightboxClose.addEventListener('click', closePhoto);
+photoLightboxOverlay.addEventListener('click', closePhoto);
+photoLightboxPrev.addEventListener('click', () => showAdjacentPhoto(-1));
+photoLightboxNext.addEventListener('click', () => showAdjacentPhoto(1));
+
 // Close on Escape key
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && letterModal.classList.contains('active')) {
         closeLetter();
+    }
+
+    if (e.key === 'Escape' && photoLightbox.classList.contains('active')) {
+        closePhoto();
+    }
+
+    if (photoLightbox.classList.contains('active') && e.key === 'ArrowLeft') {
+        showAdjacentPhoto(-1);
+    }
+
+    if (photoLightbox.classList.contains('active') && e.key === 'ArrowRight') {
+        showAdjacentPhoto(1);
     }
 });
 
@@ -432,7 +508,7 @@ function createPlanes() {
 }
 
 function observeRevealItems() {
-    const items = document.querySelectorAll('.reveal-item, .letter-card.is-staggered');
+    const items = document.querySelectorAll('.reveal-item, .letter-card.is-staggered, .memory-photo');
 
     if (!('IntersectionObserver' in window)) {
         items.forEach(item => item.classList.add('is-visible'));
@@ -446,6 +522,10 @@ function observeRevealItems() {
                 if (target.classList.contains('letter-card')) {
                     const cardIndex = Array.from(lettersGrid.children).indexOf(target);
                     target.style.transitionDelay = `${Math.min(cardIndex, 8) * 90}ms`;
+                }
+                if (target.classList.contains('memory-photo')) {
+                    const photoIndex = memoryButtons.indexOf(target);
+                    target.style.transitionDelay = `${Math.min(photoIndex, 5) * 80}ms`;
                 }
                 target.classList.add('is-visible');
                 observerInstance.unobserve(target);

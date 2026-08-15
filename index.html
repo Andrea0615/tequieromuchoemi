@@ -27,16 +27,15 @@
             <div class="hero-decoration hero-decoration-right" aria-hidden="true"></div>
             <div class="hero-route" aria-hidden="true"></div>
 
-            <figure class="hero-polaroid" aria-label="Foto grupal, un recuerdo de casa">
-                <span class="photo-tape" aria-hidden="true"></span>
-                <img src="assets/friends-photo.jpg" alt="Foto grupal de amigos con un letrero de See you soon">
-                <figcaption>see you soon ♡</figcaption>
-            </figure>
-
             <div class="hero-copy">
                 <p class="eyebrow">for your exchange year</p>
                 <h1 class="landing-title">Open When...</h1>
                 <p class="landing-manuscript">cartas para esos días en los que me necesites cerca</p>
+                <figure class="hero-polaroid" aria-label="Foto grupal, un recuerdo de casa">
+                    <span class="photo-tape" aria-hidden="true"></span>
+                    <img src="./assets/friends-photo.jpg" alt="Foto grupal de amigos con un letrero de See you soon">
+                    <figcaption>see you soon ♡</figcaption>
+                </figure>
                 <p class="landing-subtitle">Para que nunca estés tan lejos de casa.</p>
                 <button id="btn-start" class="btn btn-editorial" aria-label="Iniciar, ver el regalo">
                     open your little gift →
@@ -63,13 +62,65 @@
                     <span>con cariño</span>
                 </div>
             </article>
-            <button id="btn-open-letters" class="btn btn-editorial" aria-label="Abrir la colección de cartas">
+            <button id="btn-open-letters" class="btn btn-editorial" aria-label="Ver el álbum de recuerdos">
+                see the memories ↓
+            </button>
+        </div>
+    </section>
+
+    <section id="screen-3" class="screen screen-memories">
+        <div class="memories-wrap reveal-item">
+            <div class="memories-header">
+                <p class="memories-kicker">memory album</p>
+                <h2>a few pieces of home ♡</h2>
+                <p>por si algún día necesitas recordar que aquí tienes casa</p>
+            </div>
+
+            <div class="memories-album" id="memories-album" aria-label="Mini álbum de recuerdos">
+                <button class="memory-photo memory-photo-large" type="button" data-lightbox-index="0" aria-label="Abrir recuerdo 1">
+                    <span class="memory-tape" aria-hidden="true"></span>
+                    <img src="./assets/memories/memory-01.jpg" alt="Recuerdo 1 del álbum" loading="lazy" decoding="async">
+                    <span class="memory-caption">a little piece of us</span>
+                </button>
+
+                <button class="memory-photo memory-photo-small" type="button" data-lightbox-index="1" aria-label="Abrir recuerdo 2">
+                    <span class="memory-tape" aria-hidden="true"></span>
+                    <img src="./assets/memories/memory-02.jpg" alt="Recuerdo 2 del álbum" loading="lazy" decoding="async">
+                    <span class="memory-caption">home looks like this</span>
+                </button>
+
+                <button class="memory-photo memory-photo-tall" type="button" data-lightbox-index="2" aria-label="Abrir recuerdo 3">
+                    <span class="memory-tape" aria-hidden="true"></span>
+                    <img src="./assets/memories/memory-03.jpg" alt="Recuerdo 3 del álbum" loading="lazy" decoding="async">
+                    <span class="memory-caption">keep this close</span>
+                </button>
+
+                <button class="memory-photo memory-photo-wide" type="button" data-lightbox-index="3" aria-label="Abrir recuerdo 4">
+                    <span class="memory-tape" aria-hidden="true"></span>
+                    <img src="./assets/memories/memory-04.jpg" alt="Recuerdo 4 del álbum" loading="lazy" decoding="async">
+                    <span class="memory-caption">for the faraway days</span>
+                </button>
+
+                <button class="memory-photo memory-photo-small memory-photo-offset" type="button" data-lightbox-index="4" aria-label="Abrir recuerdo 5">
+                    <span class="memory-tape" aria-hidden="true"></span>
+                    <img src="./assets/memories/memory-05.jpg" alt="Recuerdo 5 del álbum" loading="lazy" decoding="async">
+                    <span class="memory-caption">with you always</span>
+                </button>
+
+                <button class="memory-photo memory-photo-special" type="button" data-lightbox-index="5" aria-label="Abrir recuerdo especial">
+                    <span class="memory-tape" aria-hidden="true"></span>
+                    <img src="./assets/memories/memory-06.jpg" alt="Recuerdo especial de despedida" loading="lazy" decoding="async">
+                    <span class="memory-caption">see you soon, not goodbye ♡</span>
+                </button>
+            </div>
+
+            <button id="btn-see-letters" class="btn btn-editorial" aria-label="Abrir la colección de cartas">
                 see your letters ↓
             </button>
         </div>
     </section>
 
-    <section id="screen-3" class="screen screen-collection">
+    <section id="screen-4" class="screen screen-collection">
         <div class="collection-header reveal-item">
             <h2>Open When...</h2>
             <p>cartas para esos días en los que me necesites cerca</p>
@@ -84,6 +135,17 @@
             <p class="made-with">MADE WITH 💜 FOR YOU</p>
         </div>
     </section>
+
+    <div id="photo-lightbox" class="photo-lightbox" aria-label="Visor de foto" aria-hidden="true">
+        <div class="photo-lightbox-overlay" id="photo-lightbox-overlay"></div>
+        <div class="photo-lightbox-content">
+            <button id="photo-lightbox-close" class="photo-lightbox-close" aria-label="Cerrar foto">close ×</button>
+            <button id="photo-lightbox-prev" class="photo-lightbox-nav photo-lightbox-prev" aria-label="Foto anterior">‹</button>
+            <img id="photo-lightbox-img" alt="">
+            <button id="photo-lightbox-next" class="photo-lightbox-nav photo-lightbox-next" aria-label="Foto siguiente">›</button>
+            <p id="photo-lightbox-caption" class="photo-lightbox-caption"></p>
+        </div>
+    </div>
 
     <div id="letter-modal" class="modal" aria-label="Modal de carta abierta" aria-hidden="true">
         <div class="modal-overlay" id="modal-overlay"></div>
